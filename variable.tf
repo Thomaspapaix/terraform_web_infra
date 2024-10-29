@@ -8,6 +8,16 @@ variable "location" {
   default = "northeurope"
 }
 
+variable "storage_account_name" {
+  description = "The name of the storage account"
+  type        = string
+}
+
+variable "access_key" {
+  description = "The access key for the storage account"
+  type        = string
+}
+
 variable "environnements" {
   type = list(object({
     environnement            = string
@@ -31,13 +41,6 @@ variable "environnements" {
       create_storage_account   = true
       account_tier             = "Standard"
       account_replication_type = "LRS"
-    },
-        {
-      environnement            = "inte"
-      core                     = "shared"
-      account_tier             = "Standard"
-      account_replication_type = "LRS"
-      create_storage_account   = true
     },
   ]
 }
