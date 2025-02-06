@@ -16,7 +16,7 @@ Before getting started, make sure you have:
 
 ## Usage
 
-First you need to create an Azure [Storage Account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) and get your storage accont name and your acces key in your variable enviromement like this 
+First you need to create an Azure [Storage Account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) and get your storage accont name and your acces key in your variable enviromement like this. And in this storage account create a container `tfstate`.
 
 For Windows (Command Prompt)
 ```cmd
@@ -141,6 +141,14 @@ This `variable.tf` file is an example configuration that allows you to define th
 
 After you choose your configuration you can deploy the ifrastructure with this commande
 
+For your first initialization, you need to run this command to initialize the environment variables in your backend.
+
+```bash
+terraform init `
+    -backend-config="storage_account_name=$env:TF_VAR_storage_account_name" `
+    -backend-config="access_key=$env:TF_VAR_access_key"
+```
+
 ```bash
 terraform init
 terraform apply
@@ -149,5 +157,5 @@ terraform apply
 To delete the resources, you just need to use the argument 'destroy', and it will initiate the deletion of all the resources that were created.
 
 ```bash
-./deploy destroy
+ terraform destroy
 ```
